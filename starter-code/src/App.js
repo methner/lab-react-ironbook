@@ -1,9 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import users from "./users.json";
 
-import users from "./users";
+class App extends React.Component {
+  state = {
+   userList: users,
+  }
 
-function App() {
+//function App() {
+  render () {
+    console.log('hello');
+  
   return (
     <div className="App">
      <h1>IronBook</h1>
@@ -18,17 +26,20 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>{users.firstName}</td>
-            <td>{users.lastName}</td>
-            <td>{users.campus}</td>
-            <td>{users.role}</td>
-            <td>{users.linkedin}</td>
+        { this.state.userList.map((user, index) => (
+          <tr key={index}>
+            <td>{user.firstName}</td>
+            <td>{user.lastName}</td>
+            <td>{user.campus}</td>
+            <td>{user.role}</td>
+            <td>{user.linkedin}</td>
           </tr>
+        ))}
         </tbody>
       </table>
     </div>
   );
+}
 }
 
 export default App;
