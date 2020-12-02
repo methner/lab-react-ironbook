@@ -6,15 +6,36 @@ import users from "./users.json";
 class App extends React.Component {
   state = {
    userList: users,
+   search: ''
   }
 
-//function App() {
+  handleChange = event => {
+    // console.log(event.target);
+    // const { name, value } = event.target
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+    this.setState({
+      [name]: value
+    })
+  }
+
   render () {
     console.log('hello');
   
+  const filtered = this.state.usersList.filter()
+
   return (
     <div className="App">
      <h1>IronBook</h1>
+     <div>
+      <input 
+      type="text" 
+      placeholder="Search.."
+      name="search"
+      value={this.state.search}
+      onChange={this.handleChange}/>
+    </div>
       <table>
         <thead>
           <tr>
@@ -26,6 +47,7 @@ class App extends React.Component {
           </tr>
         </thead>
         <tbody>
+          //filtered für this.state.userList einsetzen
         { this.state.userList.map((user, index) => (
           <tr key={index}>
             <td>{user.firstName}</td>
