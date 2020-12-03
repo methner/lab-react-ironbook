@@ -7,6 +7,7 @@ class App extends React.Component {
   state = {
    userList: users,
    search: ''
+   //add property
   }
 
   handleChange = event => {
@@ -20,22 +21,36 @@ class App extends React.Component {
     })
   }
 
+  filterList = event => {
+    event.preventDefault() //prevents refreshing page
+    const filtered = this.state.userList.filter(user => {
+      if (user.firstName.toLowerCase() === this.state.search.toLowerCase() || user.lastName.toLowerCase() === this.state.search.toLowerCase() ) {
+        return user
+      }
+    })
+    //add filter for role and campus
+    this.setState({
+      userList: filtered,
+    })
+  }  
+
+
   render () {
     console.log('hello');
-  
-  const filtered = this.state.usersList.filter()
+
 
   return (
     <div className="App">
      <h1>IronBook</h1>
-     <div>
+     <form onSubmit={this.filterList}>
       <input 
       type="text" 
       placeholder="Search.."
       name="search"
       value={this.state.search}
       onChange={this.handleChange}/>
-    </div>
+      <button type="submit">Search</button>
+    </form>
       <table>
         <thead>
           <tr>
