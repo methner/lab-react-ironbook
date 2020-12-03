@@ -51,6 +51,15 @@ class App extends React.Component {
       onChange={this.handleChange}/>
       <button type="submit">Search</button>
     </form>
+    <div>
+      <input type="checkbox" id="student" name="student"></input>
+      <label for="student">Student</label>
+    </div>
+
+    <div>
+      <input type="checkbox" id="teacher" name="teacher"></input>
+      <label for="teacher">Teacher</label>
+    </div>
       <table>
         <thead>
           <tr>
